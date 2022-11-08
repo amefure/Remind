@@ -16,27 +16,46 @@ struct ListNotificationView: View {
     
     // MARK: - View
     @State var isAlert:Bool = false
-    
+//    @State var isActive:Bool = false
+
     var body: some View {
         NavigationView{
             VStack{
+                
                 List{
-                    ForEach(notification){ notice in
-                        RowNotificationView(notice: notice)
-                    }.onDelete(perform: { index in
+                    
+                    if notification.count == 0{
+                        Text("通知予定のRemindはありません").listRowBackground(Color.clear)
                         
-                        manager.removeNotificationRequest(id:notification[index.first!].id)
-                        $notification.remove(atOffsets: index)
-                        isAlert = true
-                    })
+                    }else{
+                        ForEach(notification){ notice in
+                            NavigationLink(destination: {
+                                EditNotificationView(notice: notice)
+                            }, label: {
+                                    RowNotificationView(notice: notice)
+                            })
+                        }.onDelete(perform: { index in
+                            manager.removeNotificationRequest(id:notification[index.first!].id)
+                            $notification.remove(atOffsets: index)
+                            isAlert = true
+                        })
+                    }
                 }.alert("Remindを削除しました。", isPresented: $isAlert, actions: {})
                 
                 Spacer()
                 
                 AdMobBannerView().frame(height:30).padding(.bottom)
             }.navigationTitle("RemindList")
-                
+                .toolbar(content: {
+                    ToolbarItem(placement: .navigationBarTrailing, content: {
+                        NavigationLink(destination: {OldNotification()}, label: {
+                            Image(systemName: "tray.full")
+                            
+                        })
+                    })
+                })
         }.navigationViewStyle(.stack)
+        
     }
 }
 

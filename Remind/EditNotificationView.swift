@@ -1,18 +1,19 @@
 //
-//  EntryNotificationView.swift
+//  EditNotificationView.swift
 //  Remind
 //
-//  Created by t&a on 2022/10/04.
+//  Created by t&a on 2022/11/08.
 //
 
 import SwiftUI
 import RealmSwift
 
-struct EntryNotificationView: View {
-    
+struct EditNotificationView: View {
     // MARK: - Models
     let manager = NotificationRequestManager()
-    @ObservedResults(Notification.self) var notification
+    
+    // MARK: - receive data
+    var notice:Notification
     
     // MARK: - Input
     @State var date:Date = Date()
@@ -23,9 +24,9 @@ struct EntryNotificationView: View {
     @State var isAlert:Bool = false
     
     // MARK: - method
-    func resetData(){
-        date = Date()
-        text = ""
+    func setData(){
+        date = notice.date
+        text = notice.body
     }
     
     // MARK: - 選択可能な日付を定義
@@ -65,51 +66,42 @@ struct EntryNotificationView: View {
             Button(action: {
                 
                 if text != "" {
-                    
-                    let notice = Notification()
-                    notice.body = text
-                    notice.date = date
-                    
-                    
+                                       
                     let realm = try! Realm()
+                    let noticeRecord = realm.objects(Notification.self).where({$0.id == notice.id}).first!
                     
                     try! realm.write {
-
-                        // 追加処理
-                        realm.add(notice)
+                        // 更新処理
+                        noticeRecord.body = text
+                        noticeRecord.date = date
                         
-                        // 通知セット
-                        let currntItem = realm.objects(Notification.self).last!
                         let df = DateFormatter()
                         df.dateFormat = "yyyy-MM-dd-H-m"
-                        let dateStr = df.string(from: currntItem.date)
-                        manager.sendsendNotificationRequest(id: currntItem.id, str: currntItem.body, dateStr:dateStr)
+                        let dateStr = df.string(from: noticeRecord.date)
+                        // 通知を同じIDで上書きする
+                        manager.sendsendNotificationRequest(id: noticeRecord.id, str: noticeRecord.body, dateStr:dateStr)
                     }
-                    
                     isAlert = true
                     isInput = true
-                    resetData()
                     
                 }else{
-                    
                     isInput = false
                 }
-                
-                
             }, label: {
-                Text("登録")
+                Text("更新")
                     .fontWeight(.bold)
                     .padding()
                     .background(Color("AccentColor"))
                     .foregroundColor(.white)
                     .cornerRadius(5)
-            }).alert("Remindを登録しました。", isPresented: $isAlert, actions: {})
+            }).alert("Remindを更新しました。", isPresented: $isAlert, actions: {})
             
             Spacer()
             
             AdMobBannerView().frame(height:30).padding(.bottom)
+        }.onAppear{
+            setData()
         }
     }
 }
-
 
