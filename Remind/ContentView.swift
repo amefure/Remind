@@ -6,22 +6,29 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct ContentView: View {
     
     @State var selectedTag:Int = 1
 
     var body: some View {
-        TabView(selection: $selectedTag) {
-            EntryNotificationView().tabItem({
-                Image(systemName: "icloud.and.arrow.up.fill")
-            }).tag(1)
+        VStack(spacing:0){
             
-            ListNotificationView().tabItem({
-                Image(systemName: "list.bullet")
-            }).tag(2)
+            // Header
+            HeaderView()
+            
+            // Main Contents
+            TabView(selection: $selectedTag) {
+                EntryNotificationView().tabItem({
+                    Image(systemName: "icloud.and.arrow.up.fill")
+                }).tag(1)
+                
+                ListNotificationView().tabItem({
+                    Image(systemName: "list.bullet")
+                }).tag(2)
+            }
         }
+        
     }
 }
 

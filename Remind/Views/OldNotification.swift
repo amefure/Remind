@@ -10,8 +10,13 @@ import RealmSwift
 
 struct OldNotification: View {
     
+    // MARK: - ViewModels
+    private let realmDataBaseViewModel = RealmDataBaseViewModel()
+    
     // 当日の日付よりも後にセットされている通知のみ表示かつ日付の新しい古い順にソート
-    @ObservedResults(Notification.self,where:{ $0.date <= Date()},sortDescriptor:SortDescriptor(keyPath: "date", ascending: false)) var notification
+    @ObservedResults(Notification.self,where:{ $0.date <= Date()},
+                     sortDescriptor:SortDescriptor(keyPath: "date",
+                                                   ascending: false)) var notification
     
     @State var isAlert:Bool = false
     
@@ -30,17 +35,13 @@ struct OldNotification: View {
             
             Spacer()
             
-            AdMobBannerView().frame(height:30).padding(.bottom)
+            AdMobBannerView().frame(height:50)
             
         }.alert("古いRemindを\n全て削除しますか？", isPresented: $isAlert){
             
             // MARK: -
             Button(role:.destructive,action: {
-                let realm = try! Realm()
-                try! realm.write{
-                    let result = realm.objects(Notification.self).where({$0.date < Date()})
-                    realm.delete(result)
-                }
+                realmDataBaseViewModel.deleteAllOldRecord()
             }, label: {
                 Text("削除")
             })
