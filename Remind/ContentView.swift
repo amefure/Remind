@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State var selectedTag:Int = 1
-
+    @State var isAlert:Bool = false
+    
     var body: some View {
         VStack(spacing:0){
             
@@ -26,6 +27,12 @@ struct ContentView: View {
                 ListNotificationView().tabItem({
                     Image(systemName: "list.bullet")
                 }).tag(2)
+            }
+        }.alert("アプリの通知設定が\nOFFになっています。\n端末の「設定」>「Remind」>「通知」から\n「通知を許可」の設定を変更してください。", isPresented: $isAlert){
+        }.onAppear{
+            // エラーが通知拒否ならばアラートを表示
+            if ErrorViewModel().getError() == NotificationError.authorizationDenied {
+                isAlert = true
             }
         }
         

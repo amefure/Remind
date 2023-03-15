@@ -31,6 +31,9 @@
 		12E43B0129BE7C8900602954 /* ExtensionViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E43B0029BE7C8900602954 /* ExtensionViewModifier.swift */; };
 		12E43B0329BE7DB100602954 /* DateTimeControlContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E43B0229BE7DB100602954 /* DateTimeControlContainerView.swift */; };
 		12E43B0529BE7FFA00602954 /* EntryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E43B0429BE7FFA00602954 /* EntryButtonView.swift */; };
+		12E43B0929BFCEBE00602954 /* NotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E43B0829BFCEBE00602954 /* NotificationError.swift */; };
+		12E43B0E29C0AD1600602954 /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E43B0D29C0AD1600602954 /* ErrorViewModel.swift */; };
+		12E43B1029C0AF1000602954 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E43B0F29C0AF1000602954 /* ErrorModel.swift */; };
 		30609773A5684DBC239DD064 /* Pods_Remind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7C6E869B67E57297E72AEB /* Pods_Remind.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,9 @@
 		12E43B0029BE7C8900602954 /* ExtensionViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewModifier.swift; sourceTree = "<group>"; };
 		12E43B0229BE7DB100602954 /* DateTimeControlContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeControlContainerView.swift; sourceTree = "<group>"; };
 		12E43B0429BE7FFA00602954 /* EntryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButtonView.swift; sourceTree = "<group>"; };
+		12E43B0829BFCEBE00602954 /* NotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationError.swift; sourceTree = "<group>"; };
+		12E43B0D29C0AD1600602954 /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
+		12E43B0F29C0AF1000602954 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		2A7C6E869B67E57297E72AEB /* Pods_Remind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6375C9E1021A020E6066A02C /* Pods-Remind.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remind.release.xcconfig"; path = "Target Support Files/Pods-Remind/Pods-Remind.release.xcconfig"; sourceTree = "<group>"; };
 		E498C19703821C5148B2EF5B /* Pods-Remind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remind.debug.xcconfig"; path = "Target Support Files/Pods-Remind/Pods-Remind.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 				12CB924728EC5E1C002BD7B2 /* NotificationRequestModel.swift */,
 				12E43AD229B76C7800602954 /* RealmDataBaseModel.swift */,
 				12E43ADF29B8B73E00602954 /* DeviceSizeModel.swift */,
+				12E43B0729BFCE8800602954 /* Error */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 				12E43ADD29B89EA900602954 /* RealmDataBaseViewModel.swift */,
 				12E43AD429B772D200602954 /* DisplayDateViewModel.swift */,
 				12CB924428EC5DDC002BD7B2 /* AdMobViewModels.swift */,
+				12E43B0D29C0AD1600602954 /* ErrorViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -190,6 +198,15 @@
 				12E43AE129B8C39500602954 /* TimePickerView.swift */,
 			);
 			path = " DateTimeContainerView";
+			sourceTree = "<group>";
+		};
+		12E43B0729BFCE8800602954 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				12E43B0829BFCEBE00602954 /* NotificationError.swift */,
+				12E43B0F29C0AF1000602954 /* ErrorModel.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		6EC8F9E221D5480302C8914F /* Frameworks */ = {
@@ -328,11 +345,13 @@
 				12E43B0329BE7DB100602954 /* DateTimeControlContainerView.swift in Sources */,
 				12CB924C28EC6A4B002BD7B2 /* ListNotificationView.swift in Sources */,
 				12E43AD729B774F900602954 /* NotificationViewModel.swift in Sources */,
+				12E43B1029C0AF1000602954 /* ErrorModel.swift in Sources */,
 				12CB924A28EC681D002BD7B2 /* Notification.swift in Sources */,
 				12E43B0129BE7C8900602954 /* ExtensionViewModifier.swift in Sources */,
 				12E43ADC29B7E6AA00602954 /* NotificationTextFieldView.swift in Sources */,
 				12E43AFE29BCAE6900602954 /* HeaderView.swift in Sources */,
 				12E43B0529BE7FFA00602954 /* EntryButtonView.swift in Sources */,
+				12E43B0929BFCEBE00602954 /* NotificationError.swift in Sources */,
 				12CB925228ED9C2C002BD7B2 /* AppDelegate.swift in Sources */,
 				12E43AE029B8B73E00602954 /* DeviceSizeModel.swift in Sources */,
 				12E43ADA29B7E5AE00602954 /* DatePickerView.swift in Sources */,
@@ -343,6 +362,7 @@
 				12CB925028ECD9BD002BD7B2 /* RowNotificationView.swift in Sources */,
 				12E43AD529B772D200602954 /* DisplayDateViewModel.swift in Sources */,
 				12E43ADE29B89EA900602954 /* RealmDataBaseViewModel.swift in Sources */,
+				12E43B0E29C0AD1600602954 /* ErrorViewModel.swift in Sources */,
 				12E43AD329B76C7800602954 /* RealmDataBaseModel.swift in Sources */,
 				12CB924528EC5DDC002BD7B2 /* AdMobViewModels.swift in Sources */,
 			);
@@ -472,12 +492,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Remind/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Remind/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -487,7 +508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.Remind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -503,12 +524,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Remind/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Remind/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -518,7 +540,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.Remind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

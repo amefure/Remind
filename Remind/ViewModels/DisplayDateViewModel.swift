@@ -38,7 +38,14 @@ class DisplayDateViewModel {
     }
     /// 全て表示用(改行なし)
     public func getAllDisplayFormatStringNoReturn(_ date:Date) -> String{
-        df.dateFormat = "yyyy年M月d日H時mm分"
+        if DeviceSizeModel.calendar.identifier == .japanese {
+            df.calendar = Calendar(identifier: .japanese)
+            df.dateFormat = "Gy年M月d日H時mm分"
+        }else{
+            df.calendar = Calendar(identifier: .gregorian)
+            df.dateFormat = "yyyy年M月d日H時mm分"
+        }
+        
         return df.string(from: date)
     }
     

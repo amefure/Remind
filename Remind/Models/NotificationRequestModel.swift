@@ -22,12 +22,35 @@ class NotificationRequestModel {
     private let currentCenter:UNUserNotificationCenter = UNUserNotificationCenter.current()
     
     //MARK: - 通知リクエストを登録(または上書き)
-    public func entryNotificationRequest(_ request:UNNotificationRequest){
-        self.currentCenter.add(request)
+    public func entryNotificationRequest(_ request:UNNotificationRequest,
+                                         completion: @escaping (NotificationError?) -> Void) {
+        self.currentCenter.add(request) { error in
+            if error == nil{
+//                print("登録成功")
+                completion(nil)
+            }else{
+//                print("登録失敗")
+                completion(NotificationError.notificationRequestFailed)
+            }
+        }
     }
     //MARK: - 通知リクエストを削除
     public func deleteNotificationRequest(id:UUID){
         self.currentCenter.removePendingNotificationRequests(withIdentifiers: [id.uuidString])
+        
+    }
+    //MARK: - 通知申請
+    public func requestUserAuthorization(completion: @escaping (NotificationError?) -> Void) {
+        
+        self.currentCenter.requestAuthorization(options: [.alert,.badge,.sound]) { granted, error in
+            if granted {
+                // print("承認されました")
+                completion(nil)
+            }else{
+                // print("拒否されました")
+                completion(NotificationError.authorizationDenied)
+            }
+        }
     }
 }
 

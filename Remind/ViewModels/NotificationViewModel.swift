@@ -12,6 +12,8 @@ class NotificationViewModel {
     
     // MARK: - Model
     private let model = NotificationRequestModel()
+    private let errModel = ErrorModel.shared
+    
     // 通知ID
     public var id:UUID? = nil
     
@@ -56,13 +58,28 @@ class NotificationViewModel {
     
     // 通知リクエストをセンターに送信して登録 - 4
     private func sendNotification(request:UNNotificationRequest){
-        model.entryNotificationRequest(request)
+        model.entryNotificationRequest(request) { error in
+            if error != nil{
+                self.errModel.setCurrentError(error!)
+            }
+        }
     }
     // MARK: - Create
     
     // MARK: - Delete
     public func deleteNotification(id:UUID){
         model.deleteNotificationRequest(id: id)
+    }
+    
+    
+    //MARK: - 通知申請
+    public func requestUserAuthorization(completion: @escaping (NotificationError?) -> Void) {
+        model.requestUserAuthorization { error in
+            if error != nil{
+                self.errModel.setCurrentError(error!)
+            }
+            completion(error)
+        }
     }
 }
 
